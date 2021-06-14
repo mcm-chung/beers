@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import styles from "./App.module.scss";
+import React, { useState, useEffect } from "react";
+import BeerCard from "./components/BeerCard";
+import SearchBar from "./components/SearchBar";
+import CardContainer from "./components/CardContainer";
 
-function App() {
+const App = () => {
+  const [beers, setBeers] = useState([]);
+  const [search, updateSearch] = useState([]);
+
+  // useEffect(() => {
+  //   const API_URL = "https://api.punkapi.com/v2/beers";
+
+  //   const getData = fetch(API_URL)
+  //     .then((response) => response.json())
+  //     .then((data) => setBeers(data));
+  // }, []);
+
+  const API_URL = "https://api.punkapi.com/v2/beers";
+
+  const handleSearch = (beerName) => {
+    if (beerName == undefined || beerName == "") {
+      fetch(API_URL)
+        .then((response) => response.json())
+        .then((data) => setBeers(data));
+    } else
+      fetch("https://api.punkapi.com/v2/beers?beer_name=" + beerName)
+        .then((response) => response.json())
+        .then((data) => setBeers(data));
+  };
+
+  console.log(beers);
+
+  useEffect(() => {
+    handleSearch("");
+  }, []);
+
+  // useEffect(() => {
+  //   fetch("https://api.punkapi.com/v2/beers?beer_name=");
+  // });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.App}>
+      <h2 className={styles.title}>The Brew Bar</h2>
+      <SearchBar onBlur={handleSearch} />
+
+      {/* <SearchBar searchFunction={getData} /> */}
+      {/* <SearchBar updateSearchText={setSearchText} /> */}
+      {/* <BeerCard /> */}
+      <CardContainer data={beers} />
     </div>
   );
-}
+};
 
 export default App;

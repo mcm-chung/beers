@@ -1,0 +1,15 @@
+.card {
+  border: 0.5px solid black;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 10px black, 0 0 20px black;
+  text-align: center;
+
+  img {
+    height: 160px;
+    width: 50px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px white, 0 0 20px white;
+  }
+}

@@ -1,0 +1,34 @@
+.App {
+  color: #fff;
+  background: linear-gradient(-45deg, #1b1b1a, #e9ebe0, #1b1b1a);
+  background-size: 100% 100%;
+
+  animation: change 10s ease-in-out infinite;
+}
+
+@keyframes change {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@font-face {
+  font-family: Oatlander;
+  src: url(./Oatlander.ttf);
+}
+
+.title {
+  margin: auto;
+  padding: 20px;
+  font-family: Oatlander;
+  font-size: 75px;
+  display: flex;
+  justify-content: center;
+  text-shadow: 0 0 10px black, 0 0 20px black, 0 0 40px black;
+}
