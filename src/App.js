@@ -10,14 +10,6 @@ const App = () => {
   const [beers, setBeers] = useState([]);
   const [search, updateSearch] = useState([]);
 
-  // useEffect(() => {
-  //   const API_URL = "https://api.punkapi.com/v2/beers";
-
-  //   const getData = fetch(API_URL)
-  //     .then((response) => response.json())
-  //     .then((data) => setBeers(data));
-  // }, []);
-
   const API_URL = "https://api.punkapi.com/v2/beers";
 
   const handleSearch = (beerName) => {
@@ -31,24 +23,14 @@ const App = () => {
         .then((data) => setBeers(data));
   };
 
-  console.log(beers);
-
   useEffect(() => {
     handleSearch("");
   }, []);
-
-  // useEffect(() => {
-  //   fetch("https://api.punkapi.com/v2/beers?beer_name=");
-  // });
 
   return (
     <div className={styles.App}>
       <h2 className={styles.title}>The Brew Bar</h2>
       <SearchBar onBlur={handleSearch} />
-
-      {/* <SearchBar searchFunction={getData} /> */}
-      {/* <SearchBar updateSearchText={setSearchText} /> */}
-      {/* <BeerCard /> */}
       <CardContainer data={beers} />
     </div>
   );
